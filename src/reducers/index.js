@@ -1,8 +1,61 @@
+import { LOADING, ERROR, SUCCESS, ADD_SMURF, NEW_ERROR } from "../actions";
 
 export const initialState = {
+    smurfs: [],
+    loading: false,
+    error: ''
 }
 
-const reducer = ()=>{
+const reducer = (state = initialState, action) => {
+    switch(action.type){
+        case LOADING:
+            return {
+                ...state,
+                loading: true
+            }
+        case ERROR:
+            return {
+                ...state,
+                error: "You have caused a error, tisk tisk.",
+                loading: false
+            }
+        case SUCCESS:
+            console.log('action.payload: ', state.smurfs)
+            return {
+                ...state,
+                // smurfs: 
+                smurfs: [...state.smurfs, action.payload],
+                loading: false
+            }
+        case ADD_SMURF:
+            // console.log('inside of ADD_SMURF in the index.js')
+            // // // console.log('state', state);
+            // // console.log(state.smurfs[0]);
+            // // console.log('----------------');
+            // // //This still needs to be finished, just a placeholder atm
+
+            // // //I think this will throw a bug because of how the arrays are nested
+
+            if(Array.isArray(state.smurfs[0])){
+                return {
+                    ...state,
+                    smurfs: [...state.smurfs[0], action.payload]
+                }
+            }else{
+                return {
+                    ...state,
+                    smurfs: [...state.smurfs, action.payload]
+                }
+            }
+        case NEW_ERROR:
+            return {
+                ...state,
+                error: action.payload
+            }
+        default:
+            console.log('inside of default on index.js reducer file')
+            return state;
+    }
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
