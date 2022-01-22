@@ -13,10 +13,10 @@ import { useEffect } from "react";
 
 const App = (props)=> {
 
-  console.log('app props: ', props);
+  // console.log('app props: ', props);
 
   useEffect(() => {
-    console.log('inside of useEffect');
+    // console.log('inside of useEffect');
     props.fetchSmurfs();
   }, [])
 

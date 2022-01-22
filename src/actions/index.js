@@ -19,7 +19,7 @@ export const fetchSmurfs = () => (dispatch) => {
 }
 
 export const addSmurf = (smurf) => (dispatch) => {
-    console.log('inside of addSmuft in the actions.js file');
+    // console.log('inside of addSmuft in the actions.js file');
     dispatch(adding(smurf));
 }
 
