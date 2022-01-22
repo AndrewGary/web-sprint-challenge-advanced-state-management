@@ -14,7 +14,6 @@ const AddForm = (props) => {
     });
 
     //remove when error state is added
-    const errorMessage = "";
 
     const handleChange = e => {
         setState({
@@ -26,7 +25,7 @@ const AddForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            props.setError('Here is an error');
+            props.setError('You must enter Name, position, and nickname');
         } else {
             //dispatch an addSmurf action
             const newSmurf = {
@@ -59,8 +58,9 @@ const AddForm = (props) => {
                 <label htmlFor="description">Description:</label><br/>
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
+            
             {
-                errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {errorMessage}</div>
+                props.error && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {props.error}</div>
             }
             <button>Submit Smurf</button>
         </form>
